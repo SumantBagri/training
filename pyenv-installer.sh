@@ -93,7 +93,7 @@ if ! command -v pyenv 1>/dev/null; then
 
   echo "Profile is: '${profile}'" >&1
   profile="${HOME}/${profile#'~/'}"
-  echo "Expanded profile is: '${profile}'" >&1
+  echo "Expanded correct profile is: '${profile}'" >&1
 
   { case "$shell" in
     fish )
