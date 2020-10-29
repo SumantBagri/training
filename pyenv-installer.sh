@@ -95,17 +95,15 @@ if ! command -v pyenv 1>/dev/null; then
   profile=${HOME}/${profile#'~/'}
   echo "Expanded correct profile is: ${profile}" >&1
 
-  { case "$shell" in
+  case "$shell" in
     fish )
       echo "set -x PATH \"${PYENV_ROOT}/bin\" \$PATH"
       echo 'status --is-interactive; and . (pyenv init -|psub)'
       echo 'status --is-interactive; and . (pyenv virtualenv-init -|psub)'
       ;;
     * )
-      echo "export PATH=\"${PYENV_ROOT}/bin:\$PATH\""
-      echo "eval \"\$(pyenv init -)\""
-      echo "eval \"\$(pyenv virtualenv-init -)\""
+      echo "export PATH=\"${PYENV_ROOT}/bin:\$PATH\"" >> ${profile}
+      echo "eval \"\$(pyenv init -)\"" >> ${profile}
+      echo "eval \"\$(pyenv virtualenv-init -)\"" >> ${profile}
       ;;
-    esac
-  } >> ${profile}
 fi
