@@ -83,10 +83,9 @@ if ! command -v pyenv 1>/dev/null; then
     ;;
   esac
 
-  { echo "# Load pyenv automatically by adding"
-    echo "# the following to ${profile}:"
-    echo
-    case "$shell" in
+  eval profile=$profile
+
+  { case "$shell" in
     fish )
       echo "set -x PATH \"${PYENV_ROOT}/bin\" \$PATH"
       echo 'status --is-interactive; and . (pyenv init -|psub)'
@@ -98,5 +97,5 @@ if ! command -v pyenv 1>/dev/null; then
       echo "eval \"\$(pyenv virtualenv-init -)\""
       ;;
     esac
-  } >> "${HOME}${${profile}#'~'}"
+  } >> ${profile}
 fi
