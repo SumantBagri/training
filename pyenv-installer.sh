@@ -71,6 +71,8 @@ if ! command -v pyenv 1>/dev/null; then
   length=${#strarr[*]}
   shell=${strarr[$length-1]} 
 
+  echo 'Shell is: "${shell}"'
+
   case "$shell" in
   bash )
     profile="~/.bashrc"
@@ -89,7 +91,7 @@ if ! command -v pyenv 1>/dev/null; then
     ;;
   esac
 
-  echo 'Profile is: ${profile}' >&2
+  echo 'Profile is: "${profile}"'
 
   { case "$shell" in
     fish )
