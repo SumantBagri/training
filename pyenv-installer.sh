@@ -78,7 +78,7 @@ if ! command -v pyenv 1>/dev/null; then
     profile="~/.bashrc"
     ;;
   sh )
-    profile="~/.bashrc"
+    profile="~/.profile"
     ;;
   zsh )
     profile="~/.zshrc"
