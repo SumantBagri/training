@@ -91,7 +91,7 @@ if ! command -v pyenv 1>/dev/null; then
     ;;
   esac
 
-  profile=${profile/#\~/$HOME}
+  profile='${HOME}${${profile}#"~"}'
   echo "Expanded profile is: '${profile}'" >&1
 
   { case "$shell" in
