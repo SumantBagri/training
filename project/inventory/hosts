@@ -1,0 +1,5 @@
+[test]
+10.108.174.87 ansible_user=firestorm ansible_password=sumant
+
+[gcp]
+35.240.136.138 ansible_user=sumant

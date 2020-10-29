@@ -1,0 +1,23 @@
+---
+- hosts: gcp
+  gather_facts: true
+  tasks:
+  - name: Check if pyenv is installed
+    command: test -x $HOME/.pyenv/bin/pyenv
+    register: pyenv_present
+    ignore_errors: yes
+
+  - name: Curl bash script
+    get_url:
+      url: https://raw.githubusercontent.com/SumantBagri/training/main/pyenv-installer.sh
+      dest: $HOME/pyenv-installer.sh
+      mode: '0755'
+
+  - name: Install pyenv
+    shell: $HOME/pyenv-installer.sh
+    when: pyenv_present is failed 
+
+  - name: Remove downloaded script
+    file:
+      path: $HOME/pyenv-installer.sh
+      state: absent
