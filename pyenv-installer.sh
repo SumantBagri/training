@@ -65,13 +65,13 @@ if ! command -v pyenv 1>/dev/null; then
     echo
   } >&2
 
-  shell="$SHELL"
+  shell="${SHELL}"
   IFS='/'
   read -a strarr <<< "$shell"
   length=${#strarr[*]}
   shell=${strarr[$length-1]} 
 
-  echo 'Shell is: "${shell}"'
+  echo "Shell is: '${shell}'" >&1
 
   case "$shell" in
   bash )
@@ -91,7 +91,7 @@ if ! command -v pyenv 1>/dev/null; then
     ;;
   esac
 
-  echo 'Profile is: "${profile}"'
+  echo "Profile is: '${profile}'" >&1
 
   { case "$shell" in
     fish )
