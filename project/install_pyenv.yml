@@ -1,5 +1,5 @@
 ---
-- hosts: gcp
+- hosts: docker
   gather_facts: true
   tasks:
   - name: Check if pyenv is installed
