@@ -92,19 +92,19 @@ if ! command -v pyenv 1>/dev/null; then
   esac
 
   echo "Profil3 is: ${profile}" >&1
-  profile=${HOME}/${profile#'~/'}
-  echo "Expanded correct profile is: ${profile}" >&1
+  PROFILE=${HOME}/${profile#'~/'}
+  echo "Expanded correct PROFILE is: ${PROFILE}" >&1
 
   case "$shell" in
     fish )
-      echo "set -x PATH \"${PYENV_ROOT}/bin\" \$PATH" >> ${profile}
-      echo 'status --is-interactive; and . (pyenv init -|psub)' >> ${profile}
-      echo 'status --is-interactive; and . (pyenv virtualenv-init -|psub)' >> ${profile}
+      echo "set -x PATH \"${PYENV_ROOT}/bin\" \$PATH" >> "$PROFILE"
+      echo 'status --is-interactive; and . (pyenv init -|psub)' >> "$PROFILE"
+      echo 'status --is-interactive; and . (pyenv virtualenv-init -|psub)' >> "$PROFILE"
       ;;
     * )
-      echo "export PATH=\"${PYENV_ROOT}/bin:\$PATH\"" >> ${profile}
-      echo "eval \"\$(pyenv init -)\"" >> ${profile}
-      echo "eval \"\$(pyenv virtualenv-init -)\"" >> ${profile}
+      echo "export PATH=\"${PYENV_ROOT}/bin:\$PATH\"" >> "$PROFILE"
+      echo "eval \"\$(pyenv init -)\"" >> "$PROFILE"
+      echo "eval \"\$(pyenv virtualenv-init -)\"" >> "$PROFILE"
       ;;
   esac
 fi
