@@ -65,6 +65,12 @@ if ! command -v pyenv 1>/dev/null; then
     echo
   } >&2
 
+  shell="$SHELL"
+  IFS='/'
+  read -a strarr <<< "$shell"
+  length=${#strarr[*]}
+  shell=${strarr[$length-1]} 
+
   case "$shell" in
   bash )
     profile="~/.bashrc"
@@ -83,8 +89,6 @@ if ! command -v pyenv 1>/dev/null; then
     ;;
   esac
 
-  eval profile=$profile
-
   { case "$shell" in
     fish )
       echo "set -x PATH \"${PYENV_ROOT}/bin\" \$PATH"
@@ -97,5 +101,5 @@ if ! command -v pyenv 1>/dev/null; then
       echo "eval \"\$(pyenv virtualenv-init -)\""
       ;;
     esac
-  } >> ${profile}
+  } >> ${profile/#\~/$HOME}
 fi
