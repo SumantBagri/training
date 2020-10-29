@@ -89,6 +89,8 @@ if ! command -v pyenv 1>/dev/null; then
     ;;
   esac
 
+  echo '${profile}' >&2
+
   { case "$shell" in
     fish )
       echo "set -x PATH \"${PYENV_ROOT}/bin\" \$PATH"
