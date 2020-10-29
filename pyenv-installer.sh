@@ -77,6 +77,9 @@ if ! command -v pyenv 1>/dev/null; then
   bash )
     profile="~/.bashrc"
     ;;
+  sh )
+    profile="~/.profile"
+    ;;
   zsh )
     profile="~/.zshrc"
     ;;
@@ -91,7 +94,7 @@ if ! command -v pyenv 1>/dev/null; then
     ;;
   esac
 
-  echo "Profil3 is: ${profile}" >&1
+  echo "Profile is: ${profile}" >&1
   PROFILE=${HOME}/${profile#'~/'}
   echo "Expanded correct PROFILE is: ${PROFILE}" >&1
 
