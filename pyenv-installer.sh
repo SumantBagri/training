@@ -71,7 +71,7 @@ if ! command -v pyenv 1>/dev/null; then
   length=${#strarr[*]}
   shell=${strarr[$length-1]} 
 
-  echo "Shell is: '${shell}'" >&1
+  echo "Sh3ll is: ${shell}" >&1
 
   case "$shell" in
   bash )
@@ -91,7 +91,7 @@ if ! command -v pyenv 1>/dev/null; then
     ;;
   esac
 
-  echo "Profile is: '${profile}'" >&1
+  echo "Profile is: ${profile}" >&1
   profile=${HOME}/${profile#'~/'}
   echo "Expanded correct profile is: ${profile}" >&1
 
