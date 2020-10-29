@@ -65,6 +65,14 @@ if ! command -v pyenv 1>/dev/null; then
     echo
   } >&2
 
+  shell="${SHELL}"
+  IFS='/'
+  read -a strarr <<< "$shell"
+  length=${#strarr[*]}
+  shell=${strarr[$length-1]} 
+
+  echo "Sh3ll is: ${shell}" >&1
+
   case "$shell" in
   bash )
     profile="~/.bashrc"
@@ -83,20 +91,20 @@ if ! command -v pyenv 1>/dev/null; then
     ;;
   esac
 
-  { echo "# Load pyenv automatically by adding"
-    echo "# the following to ${profile}:"
-    echo
-    case "$shell" in
+  echo "Profil3 is: ${profile}" >&1
+  PROFILE=${HOME}/${profile#'~/'}
+  echo "Expanded correct PROFILE is: ${PROFILE}" >&1
+
+  case "$shell" in
     fish )
-      echo "set -x PATH \"${PYENV_ROOT}/bin\" \$PATH"
-      echo 'status --is-interactive; and . (pyenv init -|psub)'
-      echo 'status --is-interactive; and . (pyenv virtualenv-init -|psub)'
+      echo "set -x PATH \"${PYENV_ROOT}/bin\" \$PATH" >> "$PROFILE"
+      echo 'status --is-interactive; and . (pyenv init -|psub)' >> "$PROFILE"
+      echo 'status --is-interactive; and . (pyenv virtualenv-init -|psub)' >> "$PROFILE"
       ;;
     * )
-      echo "export PATH=\"${PYENV_ROOT}/bin:\$PATH\""
-      echo "eval \"\$(pyenv init -)\""
-      echo "eval \"\$(pyenv virtualenv-init -)\""
+      echo "export PATH=\"${PYENV_ROOT}/bin:\$PATH\"" >> "$PROFILE"
+      echo "eval \"\$(pyenv init -)\"" >> "$PROFILE"
+      echo "eval \"\$(pyenv virtualenv-init -)\"" >> "$PROFILE"
       ;;
-    esac
-  } >> "${HOME}${${profile}#'~'}"
+  esac
 fi
