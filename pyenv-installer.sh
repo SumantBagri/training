@@ -98,5 +98,5 @@ if ! command -v pyenv 1>/dev/null; then
       echo "eval \"\$(pyenv virtualenv-init -)\""
       ;;
     esac
-  } >> ${HOME}${${profile}#"~"}
+  } >> "${HOME}${${profile}#'~'}"
 fi
