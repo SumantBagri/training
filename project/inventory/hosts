@@ -3,3 +3,6 @@
 
 [gcp]
 35.240.136.138 ansible_user=sumant
+
+[appserver]
+ansible_user=pyapp
