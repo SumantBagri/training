@@ -91,6 +91,7 @@ if ! command -v pyenv 1>/dev/null; then
     ;;
   esac
 
+  profile='${profile/#\~/$HOME}'
   echo "Profile is: '${profile}'" >&1
 
   { case "$shell" in
@@ -105,5 +106,5 @@ if ! command -v pyenv 1>/dev/null; then
       echo "eval \"\$(pyenv virtualenv-init -)\""
       ;;
     esac
-  } >> ${profile/#\~/$HOME}
+  } >> '${profile}'
 fi
